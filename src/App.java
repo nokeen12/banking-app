@@ -10,7 +10,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
-        Number balance = 0;
+        Integer balance = 0;
         if(running){
             openMenu(running, scanner, balance);
         }
@@ -24,7 +24,7 @@ public class App {
         // System.out.println("Go back(b)");
         // System.out.println("Quit(q)");
     };
-    public static void openMenu(boolean running, Scanner scanner, Number balance){
+    public static void openMenu(boolean running, Scanner scanner, Integer balance){
         System.out.println("Welcome To Cordre's Premium Banking Services");
         System.out.println("Would you like to view your current balance?(v)");
         System.out.println("Deposit balance(d)");
@@ -34,18 +34,17 @@ public class App {
         switch(value){
             case "v": viewBalance(running, scanner, balance);
             break;
-            case "d": System.out.println("deposit balance");
+            case "d": depositBalance(running, scanner, balance);
             break;
             case "w": System.out.println("withdraw balance");
             break;
-            case "q": System.out.println("quit");
-            running = false;
+            case "q": running = false;
             break;
             default: System.out.println("Error");
             openMenu(running, scanner, balance);
         }
     };
-    public static void viewBalance(boolean running, Scanner scanner, Number balance){
+    public static void viewBalance(boolean running, Scanner scanner, Integer balance){
         //currency array
         System.out.println("Current Balance is: " + balance);
         System.out.println("Available currencies are: ");//add array of currencies
@@ -56,6 +55,7 @@ public class App {
             case "e": exchangeCurrency(running, scanner, balance);
             break;
             case "b": openMenu(running, scanner, balance);
+            break;
             case "q": running = false;
             break;
             default: System.out.println("Error");
@@ -63,6 +63,25 @@ public class App {
         }
     };
     public static void withdrawBalance(){};
-    public static void depositBalance(){};
-    public static void exchangeCurrency(boolean running, Scanner scanner, Number balance){};
+    public static void depositBalance(boolean running, Scanner scanner, Integer balance){
+        System.out.println("Current Balance is: " + balance);
+        System.out.println("How much would you like to deposit?");
+        System.out.println("Go back(b)");
+        String value = scanner.next().toLowerCase();
+        try{
+            int depoAmount = Integer.parseInt(value);
+            balance += depoAmount;
+            depositBalance(running, scanner, balance);
+        }catch(NumberFormatException e){
+            switch(value){
+                case "b": openMenu(running, scanner, balance);
+                break;
+                case "q": running = false;
+                break;
+                default: System.out.println("Error");
+                depositBalance(running, scanner, balance);
+            }
+        }
+    };
+    public static void exchangeCurrency(boolean running, Scanner scanner, Integer balance){};
 }
