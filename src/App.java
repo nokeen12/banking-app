@@ -10,9 +10,9 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
-
+        Number balance = 0;
         if(running){
-            openMenu(running, scanner);
+            openMenu(running, scanner, balance);
         }
         scanner.close();
         System.out.println("App Exited");
@@ -24,7 +24,7 @@ public class App {
         // System.out.println("Go back(b)");
         // System.out.println("Quit(q)");
     };
-    public static void openMenu(boolean running, Scanner scanner){
+    public static void openMenu(boolean running, Scanner scanner, Number balance){
         System.out.println("Welcome To Cordre's Premium Banking Services");
         System.out.println("Would you like to view your current balance?(v)");
         System.out.println("Deposit balance(d)");
@@ -32,7 +32,7 @@ public class App {
         System.out.println("Quit(q)");
         String value = scanner.next().toLowerCase();
         switch(value){
-            case "v":  System.out.println("view balance");
+            case "v": viewBalance(running, scanner, balance);
             break;
             case "d": System.out.println("deposit balance");
             break;
@@ -42,11 +42,27 @@ public class App {
             running = false;
             break;
             default: System.out.println("Error");
-            openMenu(running, scanner);
+            openMenu(running, scanner, balance);
         }
     };
-    public static void viewBalance(){};
+    public static void viewBalance(boolean running, Scanner scanner, Number balance){
+        //currency array
+        System.out.println("Current Balance is: " + balance);
+        System.out.println("Available currencies are: ");//add array of currencies
+        System.out.println("Exchange currencies(e)");
+        System.out.println("Go back(b)");
+        String value = scanner.next().toLowerCase();
+        switch(value){
+            case "e": exchangeCurrency(running, scanner, balance);
+            break;
+            case "b": openMenu(running, scanner, balance);
+            case "q": running = false;
+            break;
+            default: System.out.println("Error");
+            viewBalance(running, scanner, balance);
+        }
+    };
     public static void withdrawBalance(){};
     public static void depositBalance(){};
-    public static void exchangeCurrency(){};
+    public static void exchangeCurrency(boolean running, Scanner scanner, Number balance){};
 }
