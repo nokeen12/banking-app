@@ -14,20 +14,21 @@ public class App {
         if(running){
             openMenu(running, scanner);
         }
+        scanner.close();
+        System.out.println("App Exited");
         //text
-        System.out.println("Would you like to view your current balance?(v)");
-        System.out.println("Current Balance is: ");
-        System.out.println("Exchange currencies(e)");
-        System.out.println("Available currencies are: ");
-        System.out.println("Go back(b)");
-        System.out.println("Quit(q)");
+        // System.out.println("Would you like to view your current balance?(v)");
+        // System.out.println("Current Balance is: ");
+        // System.out.println("Exchange currencies(e)");
+        // System.out.println("Available currencies are: ");
+        // System.out.println("Go back(b)");
+        // System.out.println("Quit(q)");
     };
     public static void openMenu(boolean running, Scanner scanner){
         System.out.println("Welcome To Cordre's Premium Banking Services");
         System.out.println("Would you like to view your current balance?(v)");
         System.out.println("Deposit balance(d)");
         System.out.println("Withdraw balance(w)");
-        System.out.println("Go back(b)");
         System.out.println("Quit(q)");
         String value = scanner.next().toLowerCase();
         switch(value){
@@ -37,11 +38,11 @@ public class App {
             break;
             case "w": System.out.println("withdraw balance");
             break;
-            case "b": System.out.println("go back");
-            break;
             case "q": System.out.println("quit");
+            running = false;
             break;
             default: System.out.println("Error");
+            openMenu(running, scanner);
         }
     };
     public static void viewBalance(){};
