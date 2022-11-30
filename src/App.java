@@ -36,7 +36,7 @@ public class App {
             break;
             case "d": depositBalance(running, scanner, balance);
             break;
-            case "w": System.out.println("withdraw balance");
+            case "w": withdrawBalance(running, scanner, balance);
             break;
             case "q": running = false;
             break;
@@ -62,7 +62,31 @@ public class App {
             viewBalance(running, scanner, balance);
         }
     };
-    public static void withdrawBalance(){};
+    public static void withdrawBalance(boolean running, Scanner scanner, Integer balance){
+        System.out.println("Current Balance is: " + balance);
+        System.out.println("How much would you like to withdraw?");
+        System.out.println("Go back(b)");
+        String value = scanner.next().toLowerCase();
+        try{
+            int withAmount = Integer.parseInt(value);
+            if(withAmount > balance){
+                System.out.println("Insufficient funds");
+                withdrawBalance(running, scanner, balance);
+            }else{
+                balance -= withAmount;
+                withdrawBalance(running, scanner, balance);
+            }
+        }catch(NumberFormatException e){
+            switch(value){
+                case "b": openMenu(running, scanner, balance);
+                break;
+                case "q": running = false;
+                break;
+                default: System.out.println("Error");
+                withdrawBalance(running, scanner, balance);
+            }
+        }
+    };
     public static void depositBalance(boolean running, Scanner scanner, Integer balance){
         System.out.println("Current Balance is: " + balance);
         System.out.println("How much would you like to deposit?");
