@@ -27,13 +27,19 @@ public class App {
         System.out.println("Would you like to view your current balance?(v)");
         System.out.println("Deposit balance(d)");
         System.out.println("Withdraw balance(w)");
+        System.out.println("Go back(b)");
+        System.out.println("Quit(q)");
         String value = scanner.next().toLowerCase();
         switch(value){
             case "v":  System.out.println("view balance");
             break;
-            case "b": System.out.println("deposit balance");
+            case "d": System.out.println("deposit balance");
             break;
             case "w": System.out.println("withdraw balance");
+            break;
+            case "b": System.out.println("go back");
+            break;
+            case "q": System.out.println("quit");
             break;
             default: System.out.println("Error");
         }
