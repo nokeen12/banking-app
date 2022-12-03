@@ -49,7 +49,6 @@ public class App {
     public static void viewBalance(boolean running, Scanner scanner, Integer balance, String currency){
         //currency array
         System.out.println("Current Balance is: " + currency + balance);
-        System.out.println("Available currencies are: ");//add array of currencies
         System.out.println("Exchange currencies(e)");
         System.out.println("Go back(b)");
         String value = scanner.next().toLowerCase();
@@ -110,5 +109,27 @@ public class App {
             }
         }
     };
-    public static void exchangeCurrency(boolean running, Scanner scanner, Integer balance, String currency){};
+    public static void exchangeCurrency(boolean running, Scanner scanner, Integer balance, String currency){
+        System.out.println("Current Balance is: " + currency + balance);
+        System.out.println("Current currencies are: Dollar(d), Pound(p), Euro(e)");
+        System.out.println("Go back(b)");
+        String value = scanner.next().toLowerCase();
+        switch(value){
+            case "e": currency = "€";
+            balance *= 1;
+            break;
+            case "p": currency = "£";
+            balance *= 1;
+            break;
+            case "d": currency = "$";
+            balance *= 1;
+            break;
+            case "b": viewBalance(running, scanner, balance, currency);
+            break;
+            case "q": running = false;
+            break;
+            default: System.out.println("Error");
+        }
+        exchangeCurrency(running, scanner, balance, currency);
+    };
 }
