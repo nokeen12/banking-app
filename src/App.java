@@ -1,11 +1,5 @@
-import java.util.Scanner; //scanner used for gathering user input in command line
+import java.util.Scanner;
 
-//keys
-// something.equals(something)
-// scanner.close()
-// String value = scanner.next();
-// value = scanner.next().toLowerCase();
-// String[] choices = {rock, paper, scissors}
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
@@ -17,14 +11,6 @@ public class App {
         }
         scanner.close();
         System.out.println("App Exited");
-        //text
-        // System.out.println("Would you like to view your current balance?(v)");
-        // System.out.println("Current Balance is: ");
-        // System.out.println("Exchange currencies(e)");
-        // System.out.println("Available currencies are: ");
-        // System.out.println("Go back(b)");
-        // System.out.println("Quit(q)");
-        // currencies [ $(dollar), €(euro), £(pound) ]
     };
     public static void openMenu(boolean running, Scanner scanner, Integer balance, String currency){
         System.out.println("Welcome To Cordre's Premium Banking Services");
