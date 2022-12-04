@@ -145,9 +145,9 @@ public class App {
                 if(currency == "£"){
                     System.out.println("Error: Currently Selected");
                 }else if(currency == "$"){
-                    balance = (int)(balance / 1.17);
-                }else if(currency == "€"){
                     balance = (int)(balance / 1.23);
+                }else if(currency == "€"){
+                    balance = (int)(balance / 1.17);
                 }
                 currency = "£";
                 exchangeCurrency(running, scanner, balance, currency);
