@@ -34,16 +34,21 @@ public class App {
         System.out.println("Quit(q)");
         String value = scanner.next().toLowerCase();
         switch(value){
-            case "v": viewBalance(running, scanner, balance, currency);
-            break;
-            case "d": depositBalance(running, scanner, balance, currency);
-            break;
-            case "w": withdrawBalance(running, scanner, balance, currency);
-            break;
-            case "q": running = false;
-            break;
-            default: System.out.println("Error");
-            openMenu(running, scanner, balance, currency);
+            case "v": 
+                viewBalance(running, scanner, balance, currency);
+                break;
+            case "d": 
+                depositBalance(running, scanner, balance, currency);
+                break;
+            case "w": 
+                withdrawBalance(running, scanner, balance, currency);
+                break;
+            case "q": 
+                running = false;
+                break;
+            default: 
+                System.out.println("Error");
+                openMenu(running, scanner, balance, currency);
         }
     };
     public static void viewBalance(boolean running, Scanner scanner, Integer balance, String currency){
@@ -53,14 +58,18 @@ public class App {
         System.out.println("Go back(b)");
         String value = scanner.next().toLowerCase();
         switch(value){
-            case "e": exchangeCurrency(running, scanner, balance, currency);
-            break;
-            case "b": openMenu(running, scanner, balance, currency);
-            break;
-            case "q": running = false;
-            break;
-            default: System.out.println("Error");
-            viewBalance(running, scanner, balance, currency);
+            case "e": 
+                exchangeCurrency(running, scanner, balance, currency);
+                break;
+            case "b": 
+                openMenu(running, scanner, balance, currency);
+                break;
+            case "q": 
+                running = false;
+                break;
+            default: 
+                System.out.println("Error");
+                viewBalance(running, scanner, balance, currency);
         }
     };
     public static void withdrawBalance(boolean running, Scanner scanner, Integer balance, String currency){
@@ -80,12 +89,15 @@ public class App {
             }
         }catch(NumberFormatException e){
             switch(value){
-                case "b": openMenu(running, scanner, balance, currency);
-                break;
-                case "q": running = false;
-                break;
-                default: System.out.println("Error");
-                withdrawBalance(running, scanner, balance, currency);
+                case "b": 
+                    openMenu(running, scanner, balance, currency);
+                    break;
+                case "q": 
+                    running = false;
+                    break;
+                default: 
+                    System.out.println("Error");
+                    withdrawBalance(running, scanner, balance, currency);
             }
         }
     };
@@ -100,12 +112,15 @@ public class App {
             depositBalance(running, scanner, balance, currency);
         }catch(NumberFormatException e){
             switch(value){
-                case "b": openMenu(running, scanner, balance, currency);
-                break;
-                case "q": running = false;
-                break;
-                default: System.out.println("Error");
-                depositBalance(running, scanner, balance, currency);
+                case "b": 
+                    openMenu(running, scanner, balance, currency);
+                    break;
+                case "q": 
+                    running = false;
+                    break;
+                default: 
+                    System.out.println("Error");
+                    depositBalance(running, scanner, balance, currency);
             }
         }
     };
@@ -115,21 +130,48 @@ public class App {
         System.out.println("Go back(b)");
         String value = scanner.next().toLowerCase();
         switch(value){
-            case "e": currency = "€";
-            balance *= 1;
-            break;
-            case "p": currency = "£";
-            balance *= 1;
-            break;
-            case "d": currency = "$";
-            balance *= 1;
-            break;
-            case "b": viewBalance(running, scanner, balance, currency);
-            break;
-            case "q": running = false;
-            break;
-            default: System.out.println("Error");
+            case "e": 
+                if(currency == "€"){
+                    System.out.println("Error: Currently Selected");
+                }else if(currency == "$"){
+                    balance = (int)(balance / 1.05);
+                }else if(currency == "£"){
+                    balance = (int)(balance * 1.17);
+                }
+                currency = "€";
+                exchangeCurrency(running, scanner, balance, currency);
+                break;
+            case "p": 
+                if(currency == "£"){
+                    System.out.println("Error: Currently Selected");
+                }else if(currency == "$"){
+                    balance = (int)(balance / 1.17);
+                }else if(currency == "€"){
+                    balance = (int)(balance / 1.23);
+                }
+                currency = "£";
+                exchangeCurrency(running, scanner, balance, currency);
+                break;
+            case "d": 
+                if(currency == "$"){
+                    System.out.println("Error: Currently Selected");
+                }else if(currency == "£"){
+                    balance = (int)(balance * 1.23);
+                }else if(currency == "€"){
+                    balance = (int)(balance * 1.05);
+                }
+                currency = "$";
+                exchangeCurrency(running, scanner, balance, currency);
+                break;
+            case "b": 
+                viewBalance(running, scanner, balance, currency);
+                break;
+            case "q": 
+                running = false;
+                break;
+            default: 
+                System.out.println("Error");
+                exchangeCurrency(running, scanner, balance, currency);
         }
-        exchangeCurrency(running, scanner, balance, currency);
     };
 }
